@@ -1,4 +1,4 @@
-package com.yidong.entity;
+package com.edong.entity;
 
 import static org.junit.Assert.*;
 

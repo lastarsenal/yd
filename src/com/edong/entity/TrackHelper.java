@@ -60,6 +60,9 @@ public class TrackHelper {
 		double sumDown = 0;
 		double sumUpDist = 0;
 		double sumDownDist = 0;
+		double sumHorizonDist = 0;
+		TrackPoint startTp = null;
+		TrackPoint endTp = null;
 		for (TrackPoint tp: track.getTrack()) {
 			if (prev != null) {
 			     double eleDiff = tp.getElevation() - prev.getElevation();
@@ -71,12 +74,16 @@ public class TrackHelper {
 			    	 sumDown -= eleDiff;
 			    	 sumDownDist += distance;
 			     } else {
-			    	 
+			    	 sumHorizonDist += distance;
 			     }
+			} else {
+				startTp = tp;
 			}
 			prev = tp;
+			endTp = tp;
 		}
-		TrackSummary trackSummary = new TrackSummary(sumUp, sumDown, sumUpDist, sumDownDist);
+		TrackSummary trackSummary = new TrackSummary(sumUp, sumDown, sumUpDist, 
+				sumDownDist, sumHorizonDist, startTp.getTime().getTime(), endTp.getTime().getTime());
 		return trackSummary;
 	}
 
