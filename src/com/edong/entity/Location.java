@@ -1,19 +1,23 @@
 package com.edong.entity;
 
-import java.util.Date;
 
-public class TrackPoint {
+
+public class Location {
 	private double latitude; //纬度
 	private double longitude; //经度
 	private double elevation; //海拔
-	private Date time; //时间
+	private long time; //打点时间
+	private double speed;
+	private double distance;
 	
-	public TrackPoint(double latitude, double longitude, double elevation,
-			Date time) {
+	public Location(double latitude, double longitude, double elevation,
+			long time, double speed, double distance) {
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.elevation = elevation;
 		this.time = time;
+		this.speed = speed;
+		this.distance = distance;
 	}
 
 	public double getLatitude() {
@@ -40,20 +44,35 @@ public class TrackPoint {
 		this.elevation = elevation;
 	}
 
-	public Date getTime() {
+	public long getTime() {
 		return time;
 	}
 
-	public void setTime(Date time) {
+	public void setTime(long time) {
 		this.time = time;
 	}
 
+	public double getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(double speed) {
+		this.speed = speed;
+	}
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+	
 	@Override
 	public String toString() {
 		return "TrackPoint [latitude=" + latitude + ", longitude=" + longitude
-				+ ", elevation=" + elevation + ", time=" + time + "]";
+				+ ", elevation=" + elevation + ", time=" + time + ", speed="
+				+ speed + ", distance=" + distance + "]";
 	}
 	
-	
-
 }

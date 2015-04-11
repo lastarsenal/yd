@@ -4,6 +4,7 @@ package com.edong.entity;
 public class TrackHelper {
 	
 	private final static double EARTH_RADIUS = 6371004; //地球半径
+	private final static int LOC_ELEM_NUM = 6;
 	
 	/**
 	 * 将角度转化成弧度
@@ -38,7 +39,7 @@ public class TrackHelper {
 		return dist;
 	}
 	
-	public static double getHorizonDist(TrackPoint tp1, TrackPoint tp2) {
+	public static double getHorizonDist(Location tp1, Location tp2) {
 		double lonA = getRedian(tp2.getLongitude());
 		double latA = getRedian(tp2.getLatitude());
 		double lonB = getRedian(tp1.getLongitude());
@@ -47,7 +48,7 @@ public class TrackHelper {
 		return horizonDist;
 	}
 	
-	public static double getDistance(TrackPoint tp1, TrackPoint tp2) {
+	public static double getDistance(Location tp1, Location tp2) {
         double horizonDist = getHorizonDist(tp1, tp2);
 		double eleDiff = tp2.getElevation() - tp1.getElevation();
 		double distance = Math.sqrt(horizonDist * horizonDist + eleDiff * eleDiff);
@@ -55,15 +56,15 @@ public class TrackHelper {
 	}
 	
 	public static TrackSummary sumTrack(Track track) {
-		TrackPoint prev = null;
+		Location prev = null;
 		double sumUp = 0;
 		double sumDown = 0;
 		double sumUpDist = 0;
 		double sumDownDist = 0;
 		double sumHorizonDist = 0;
-		TrackPoint startTp = null;
-		TrackPoint endTp = null;
-		for (TrackPoint tp: track.getTrack()) {
+		Location startTp = null;
+		Location endTp = null;
+		for (Location tp: track.getLocations()) {
 			if (prev != null) {
 			     double eleDiff = tp.getElevation() - prev.getElevation();
 			     double distance = getDistance(prev, tp);
@@ -83,8 +84,26 @@ public class TrackHelper {
 			endTp = tp;
 		}
 		TrackSummary trackSummary = new TrackSummary(sumUp, sumDown, sumUpDist, 
-				sumDownDist, sumHorizonDist, startTp.getTime().getTime(), endTp.getTime().getTime());
+				sumDownDist, sumHorizonDist, startTp.getTime(), endTp.getTime());
 		return trackSummary;
+	}
+	
+	public static String locationToStr(Location loc) {
+		StringBuffer buf = new StringBuffer();
+		buf.append(String.valueOf(loc.getLatitude())).append(",").append(String.valueOf(loc.getLongitude())).append(",")
+		   .append(String.valueOf(loc.getElevation())).append(",").append(String.valueOf(loc.getTime())).append(",")
+		   .append(String.valueOf(loc.getSpeed())).append(",").append(String.valueOf(loc.getDistance()));
+		return buf.toString();
+	}
+	
+	public static Location strToLocation(String str) {
+		String[] strs = str.split(",");
+		if (strs.length != LOC_ELEM_NUM) {
+			throw new IllegalArgumentException("json format error!");
+		}
+		return new Location(Double.parseDouble(strs[0]), Double.parseDouble(strs[1]),
+			Double.parseDouble(strs[2]), Long.parseLong(strs[3]), 
+			Double.parseDouble(strs[4]), Double.parseDouble(strs[5]));	
 	}
 
 }

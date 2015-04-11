@@ -5,16 +5,16 @@ import java.util.List;
 
 public class Track {
 	private String name;
-	private List<TrackPoint> track;
+	private List<Location> locations;
 	
 	public Track() {
 		name = "";
-		track = new ArrayList<TrackPoint>();
+		locations = new ArrayList<Location>();
 	}
 	
-	public Track(String name, List<TrackPoint> track) {
+	public Track(String name, List<Location> locations) {
 		this.name = name;
-		this.track = track;
+		this.locations = locations;
 	}
 	public String getName() {
 		return name;
@@ -22,20 +22,20 @@ public class Track {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<TrackPoint> getTrack() {
-		return track;
+	public List<Location> getLocations() {
+		return locations;
 	}
-	public void setTrack(List<TrackPoint> track) {
-		this.track = track;
+	public void setLocations(List<Location> track) {
+		this.locations = track;
 	}
 	
-	public void addTrackPoint(TrackPoint tp) {
-		this.track.add(tp);
+	public void addLocation(Location tp) {
+		this.locations.add(tp);
 	}
 
 	@Override
 	public String toString() {
-		return "Track [name=" + name + ", track=" + track + "]";
+		return "Track [name=" + name + ", locations=" + locations + "]";
 	}
 	
 }

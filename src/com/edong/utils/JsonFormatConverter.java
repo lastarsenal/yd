@@ -1,9 +1,18 @@
 package com.edong.utils;
 
-import com.edong.entity.Track;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+
+import com.edong.entity.Location;
+import com.edong.entity.Track;
+import com.edong.entity.TrackHelper;
 
 /**
  * 把gpx文件转换成json格式
@@ -12,13 +21,43 @@ import net.sf.json.JSONObject;
  */
 public class JsonFormatConverter {
 	
-	public static final void convertTrackToJson(Track track) {
-		JSONObject jsonObj = JSONObject.fromObject(track);
-		System.out.println(jsonObj);
+	public static final JSONObject convertTrackToJson(Track track) {
+		List<String> locations = new ArrayList<String>();
+		for (Location loc: track.getLocations()) {
+			locations.add(TrackHelper.locationToStr(loc));
+		}
+		
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.element("locations", locations);
+		return jsonObj;
+		//System.out.println(jsonObj);
 	}
-
-	/*
-	public static final void dealTrack() {
+	
+	public static final Track convertJsonToTrack(String jsonFile) throws IOException {
+		BufferedReader reader = null;
+		List<Location> locations = new ArrayList<Location>();
+		try {
+			reader = new BufferedReader(new FileReader(new File(jsonFile)));
+			JSONObject jsonObj = JSONObject.fromObject(reader.readLine());
+			JSONArray locationStrArr = jsonObj.getJSONArray(ProtocolCode.NAME_LOCATIONS);
+		    //System.out.println(locations);
+		    
+		    for (int i = 0; i < locationStrArr.size(); i++) {
+		    	String str = (String)locationStrArr.get(i);
+		    	//System.out.println(str);
+		    	Location loc = TrackHelper.strToLocation(str);
+		    	locations.add(loc);
+		    }
+		    
+		} finally {
+			if (reader != null) {
+		        reader.close();
+			}
+		}
+		return new Track(jsonFile, locations);
+	}
+/*
+	public static final void dealTrack(JSONObject report) {
 		JSONArray locations = new JSONArray();
 		
 		Long startTime = report.getLong(ProtocolCode.NAME_STARTTIME);
@@ -51,7 +90,6 @@ public class JsonFormatConverter {
 
 		int[] eles = new int[locations.size()];
 		List<double[]> rds = new ArrayList<double[]>();
-		// logger.info("startTime:"+startTime+" end:"+end+" type:"+type+" speed:"+speed+" max_speed:"+max_speed+" min_speed:"+min_speed+" max_height:"+max_height+" min_height:"+min_height+" distance:"+distance);
 		StringBuffer temp = new StringBuffer();
 		float firstLng = 0;
 		float fifstLat = 0;
@@ -62,7 +100,6 @@ public class JsonFormatConverter {
 	
 			if (j == 0) {
 
-				logger.info("************* sourceCode:"+sourceCode+" eleoff:"+eleoff+" uName:"+uName+" localtion:"+localtion.length());
 
 				String[] data = localtion.split(",");
 				try {
@@ -86,6 +123,7 @@ public class JsonFormatConverter {
 				eles[j] = ele;
 				rds.add(new double[] { ele, distanctemp });
 			}
+		}
 	}
-	*/
+*/	
 }

@@ -37,8 +37,8 @@ public class GPXParser {
 			double elevation = Double.parseDouble(elem.elementTextTrim("ele"));
 			String time = elem.elementText("time");
 			Date tpTime = timeFormatter.parse(time);
-			TrackPoint tp = new TrackPoint(latitude, longitude, elevation, tpTime);
-			track.addTrackPoint(tp);
+			Location tp = new Location(latitude, longitude, elevation, tpTime.getTime(), 0, 0);
+			track.addLocation(tp);
 //			if (i < 10) {
 //			    System.out.println("[" + i + "]" + tp);
 //			}
@@ -53,7 +53,7 @@ public class GPXParser {
 		String gpxFile = "/Users/ekixun/Work/test/yd/data/1235m.gpx";
 		GPXParser gpxParser = new GPXParser();
 		Track track = gpxParser.parse(gpxFile);
-		System.out.println("point size=" + track.getTrack().size());
+		System.out.println("point size=" + track.getLocations().size());
 		//System.out.println(track);
 	}
 }

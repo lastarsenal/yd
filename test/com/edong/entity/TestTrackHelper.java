@@ -1,18 +1,11 @@
 package com.edong.entity;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.text.ParseException;
-import java.util.Date;
 
 import org.dom4j.DocumentException;
 import org.junit.Test;
-
-import com.edong.entity.GPXParser;
-import com.edong.entity.Track;
-import com.edong.entity.TrackHelper;
-import com.edong.entity.TrackPoint;
-import com.edong.entity.TrackSummary;
 
 public class TestTrackHelper {
 	
@@ -31,8 +24,8 @@ public class TestTrackHelper {
 	public void testGetHorizonDist() {
 		
 		for (int i = 0; i < gpsInfo.length; i++) {
-			TrackPoint tp1 = new TrackPoint(gpsInfo[i][0], gpsInfo[i][1], 0, new Date());
-			TrackPoint tp2 = new TrackPoint(gpsInfo[i][2], gpsInfo[i][3], 0, new Date());
+			Location tp1 = new Location(gpsInfo[i][0], gpsInfo[i][1], 0, 0, 0, 0);
+			Location tp2 = new Location(gpsInfo[i][2], gpsInfo[i][3], 0, 0, 0, 0);
 			double distance = TrackHelper.getHorizonDist(tp1, tp2);
 			System.out.println("Calc tp1=" + tp1 + " and tp2=" + tp2 
 					+ ", Distance=" + distance + " VS. expectedDistance=" + gpsInfo[i][4] );
@@ -49,7 +42,7 @@ public class TestTrackHelper {
 		String gpxFile = "/Users/ekixun/Work/test/yd/data/1235m.gpx";
 		GPXParser gpxParser = new GPXParser();
 		Track track = gpxParser.parse(gpxFile);
-		System.out.println("point size=" + track.getTrack().size());
+		System.out.println("point size=" + track.getLocations().size());
 		TrackSummary trackSummary = TrackHelper.sumTrack(track);
 		double expectedSumUp = 1287.3970000000002;
 		double expectedSumDown = 1217.029000000001;
