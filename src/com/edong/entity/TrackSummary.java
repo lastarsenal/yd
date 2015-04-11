@@ -80,8 +80,8 @@ public class TrackSummary {
 		this.endTime = endTime;
 	}
 
-	public long getDuration() {
-		return (this.endTime - this.startTime) / 1000;
+	public double getDuration() {
+		return (this.endTime - this.startTime) / 1000.0;
 	}
 
 	public double getSumDistance() {
