@@ -2,58 +2,56 @@ package com.edong.entity;
 
 public class TrackSummary {
 	
-	private double accumulativeUp;
-	private double accumulativeDown;
-	private double accumulativeUpDistance;
-	private double accumulativeDownDistance;
+	private double sumUp;
+	private double sumDown;
+	private double sumUpDistance;
+	private double sumDownDistance;
 	
 	public TrackSummary() {
-		this.accumulativeUp = 0;
-		this.accumulativeDown = 0;
-		this.accumulativeUpDistance = 0;
-		this.accumulativeDownDistance = 0;
+		this.sumUp = 0;
+		this.sumDown = 0;
+		this.sumUpDistance = 0;
+		this.sumDownDistance = 0;
 	}
 	
-	public TrackSummary(double accumulativeUp, double accumulativeDown,
-			double accumulativeUpDistance, double accumulativeDownDistance) {
-		this.accumulativeUp = accumulativeUp;
-		this.accumulativeDown = accumulativeDown;
-		this.accumulativeUpDistance = accumulativeUpDistance;
-		this.accumulativeDownDistance = accumulativeDownDistance;
+	public TrackSummary(double sumUp, double sumDown,
+			double sumUpDistance, double sumDownDistance) {
+		this.sumUp = sumUp;
+		this.sumDown = sumDown;
+		this.sumUpDistance = sumUpDistance;
+		this.sumDownDistance = sumDownDistance;
 	}
 	
-	public double getAccumulativeUp() {
-		return accumulativeUp;
+	public double getSumUp() {
+		return sumUp;
 	}
-	public void setAccumulativeUp(double accumulativeUp) {
-		this.accumulativeUp = accumulativeUp;
+	public void setSumUp(double sumUp) {
+		this.sumUp = sumUp;
 	}
-	public double getAccumulativeDown() {
-		return accumulativeDown;
+	public double getSumDown() {
+		return sumDown;
 	}
-	public void setAccumulativeDown(double accumulativeDown) {
-		this.accumulativeDown = accumulativeDown;
+	public void setSumDown(double sumDown) {
+		this.sumDown = sumDown;
 	}
-	public double getAccumulativeUpDistance() {
-		return accumulativeUpDistance;
+	public double getSumUpDistance() {
+		return sumUpDistance;
 	}
-	public void setAccumulativeUpDistance(double accumulativeUpDistance) {
-		this.accumulativeUpDistance = accumulativeUpDistance;
+	public void setSumUpDistance(double sumUpDistance) {
+		this.sumUpDistance = sumUpDistance;
 	}
-	public double getAccumulativeDownDistance() {
-		return accumulativeDownDistance;
+	public double getSumDownDistance() {
+		return sumDownDistance;
 	}
-	public void setAccumulativeDownDistance(double accumulativeDownDistance) {
-		this.accumulativeDownDistance = accumulativeDownDistance;
+	public void setSumDownDistance(double sumDownDistance) {
+		this.sumDownDistance = sumDownDistance;
 	}
 
 	@Override
 	public String toString() {
-		return "TrackSummary [accumulativeUp=" + accumulativeUp
-				+ ", accumulativeDown=" + accumulativeDown
-				+ ", accumulativeUpDistance=" + accumulativeUpDistance
-				+ ", accumulativeDownDistance=" + accumulativeDownDistance
-				+ "]";
+		return "TrackSummary [sumUp=" + sumUp + ", sumDown=" + sumDown
+				+ ", sumUpDistance=" + sumUpDistance + ", sumDownDistance="
+				+ sumDownDistance + "]";
 	}
 
 }

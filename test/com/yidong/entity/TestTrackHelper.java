@@ -2,12 +2,17 @@ package com.yidong.entity;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
 import java.util.Date;
 
+import org.dom4j.DocumentException;
 import org.junit.Test;
 
+import com.edong.entity.GPXParser;
+import com.edong.entity.Track;
 import com.edong.entity.TrackHelper;
 import com.edong.entity.TrackPoint;
+import com.edong.entity.TrackSummary;
 
 public class TestTrackHelper {
 	
@@ -37,6 +42,24 @@ public class TestTrackHelper {
 					+ ", Distance=" + distance + " VS. expectedDistance=" + gpsInfo[i][4] );
 			assertEquals(gpsInfo[i][4], distance, 0);
 		}
+	}
+	
+	@Test
+	public void testSumTrack() throws DocumentException, ParseException {
+		String gpxFile = "/Users/ekixun/Work/test/yd/data/1235m.gpx";
+		GPXParser gpxParser = new GPXParser();
+		Track track = gpxParser.parse(gpxFile);
+		System.out.println("point size=" + track.getTrack().size());
+		TrackSummary trackSummary = TrackHelper.sumTrack(track);
+		double expectedSumUp = 1287.3970000000002;
+		double expectedSumDown = 1217.029000000001;
+		double expectedSumUpDist = 20041.425682856945;
+		double expectedSumDownDist = 23441.48697412073;
+		assertEquals(expectedSumUp, trackSummary.getSumUp(), 0);
+		assertEquals(expectedSumDown, trackSummary.getSumDown(), 0);
+		assertEquals(expectedSumUpDist, trackSummary.getSumUpDistance(), 0);
+		assertEquals(expectedSumDownDist, trackSummary.getSumDownDistance(), 0);
+		System.out.println(trackSummary);
 	}
 
 }

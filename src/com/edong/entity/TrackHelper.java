@@ -1,8 +1,5 @@
 package com.edong.entity;
 
-import java.text.ParseException;
-
-import org.dom4j.DocumentException;
 
 public class TrackHelper {
 	
@@ -22,9 +19,8 @@ public class TrackHelper {
 	 * 注意这里的实现没有考虑东经西经，北纬南纬，一般的运动很难瞬间在两个点之间变换东经西经，北纬南纬。
 	 * 给定的数据中也没有标明东经西经北纬南纬，也许客户端传过来的时候已经变换好了？
 	 * 一般的经纬度，可以做如下的的变换：
-	 * 东经取正值，西经取负值，北纬取90-纬度，南纬取90+纬度，这样做也就是将经纬度的取值范围从原始的0-180变为0-360，
+	 * 东经取正值，西经取负值，北纬取正值，南纬取负值，这样做也就是将经纬度的取值范围从原始的0-180变为-180->180和-90->90，
 	 * 以此防止东经西经，南纬北纬搞混
-	 * 这个方法中运用的计算公式，是假设经度做了正负的处理，而纬度不做处理。
 	 * @param lonA A点经度(弧度制)
 	 * @param latA A点纬度(弧度制)
 	 * @param lonB B点经度(弧度制)
@@ -80,21 +76,8 @@ public class TrackHelper {
 			}
 			prev = tp;
 		}
-		System.out.println("sumUp=" + sumUp);
-		System.out.println("sumDown=" + sumDown);
-		System.out.println("sumUpDist=" + sumUpDist);
-		System.out.println("sumDownDist=" + sumDownDist);
 		TrackSummary trackSummary = new TrackSummary(sumUp, sumDown, sumUpDist, sumDownDist);
 		return trackSummary;
-	}
-
-	public static void main(String[] args) throws DocumentException, ParseException {
-		String gpxFile = "/Users/ekixun/Work/test/yd/data/1235m.gpx";
-		GPXParser gpxParser = new GPXParser();
-		Track track = gpxParser.parse(gpxFile);
-		System.out.println("point size=" + track.getTrack().size());
-		TrackSummary trackSummary = TrackHelper.sumTrack(track);
-		System.out.println(trackSummary);
 	}
 
 }
