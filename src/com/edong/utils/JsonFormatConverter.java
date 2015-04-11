@@ -16,7 +16,7 @@ import com.edong.entity.TrackHelper;
 
 /**
  * 把gpx文件转换成json格式
- * @author ekixun
+ * @author yixun
  *
  */
 public class JsonFormatConverter {
@@ -30,7 +30,6 @@ public class JsonFormatConverter {
 		JSONObject jsonObj = new JSONObject();
 		jsonObj.element("locations", locations);
 		return jsonObj;
-		//System.out.println(jsonObj);
 	}
 	
 	public static final Track convertJsonToTrack(String jsonFile) throws IOException {
@@ -40,11 +39,9 @@ public class JsonFormatConverter {
 			reader = new BufferedReader(new FileReader(new File(jsonFile)));
 			JSONObject jsonObj = JSONObject.fromObject(reader.readLine());
 			JSONArray locationStrArr = jsonObj.getJSONArray(ProtocolCode.NAME_LOCATIONS);
-		    //System.out.println(locations);
 		    
 		    for (int i = 0; i < locationStrArr.size(); i++) {
 		    	String str = (String)locationStrArr.get(i);
-		    	//System.out.println(str);
 		    	Location loc = TrackHelper.strToLocation(str);
 		    	locations.add(loc);
 		    }

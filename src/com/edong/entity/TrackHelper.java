@@ -83,9 +83,13 @@ public class TrackHelper {
 			prev = tp;
 			endTp = tp;
 		}
-		TrackSummary trackSummary = new TrackSummary(sumUp, sumDown, sumUpDist, 
-				sumDownDist, sumHorizonDist, startTp.getTime(), endTp.getTime());
-		return trackSummary;
+		if (startTp != null && endTp != null) {
+			TrackSummary trackSummary = new TrackSummary(sumUp, sumDown, sumUpDist, 
+					sumDownDist, sumHorizonDist, startTp.getTime(), endTp.getTime());
+			return trackSummary;
+		} else {
+			return new TrackSummary();
+		}
 	}
 	
 	public static String locationToStr(Location loc) {
