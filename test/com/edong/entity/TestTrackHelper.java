@@ -7,6 +7,8 @@ import java.text.ParseException;
 import org.dom4j.DocumentException;
 import org.junit.Test;
 
+import com.edong.parser.GPXParser;
+
 public class TestTrackHelper {
 	
 	/**
@@ -40,8 +42,7 @@ public class TestTrackHelper {
 	@Test
 	public void testSumTrack() throws DocumentException, ParseException {
 		String gpxFile = "/Users/ekixun/Work/test/yd/data/1235m.gpx";
-		GPXParser gpxParser = new GPXParser();
-		Track track = gpxParser.parse(gpxFile);
+		Track track = GPXParser.parse(gpxFile);
 		System.out.println("point size=" + track.getLocations().size());
 		TrackSummary trackSummary = TrackHelper.sumTrack(track);
 		double expectedSumUp = 1287.3970000000002;

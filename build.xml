@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="edong" basedir="." default="jar">
+    <property name="src.dir" value="src"/>
+    <property name="test.dir" value="test"/>
+    <property name="build.dir" value="bin"/>
+    <property name="data.dir" value="data"/>
+    <property name="lib.dir" value="lib"/>
+
+	<path id="compile.classpath">  
+	    <fileset dir="${lib.dir}" includes="*.jar" />
+	</path>      
+    
+    <target name="clean" description="Delete all generated files">
+        <delete dir="${build.dir}" failonerror="false"/>
+        <delete file="${ant.project.name}.jar"/>
+        <delete file="${ant.project.name}.zip"/>
+    </target>
+
+    <target name="compile" description="Compiles the Task">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}">
+            <classpath refid="compile.classpath"/>
+        </javac>
+    </target>
+
+    <target name="jar" description="JARs the Task" depends="compile">
+        <jar destfile="${ant.project.name}.jar" basedir="${build.dir}"/>
+    </target>
+    
+    <target name="zip" description="Zip src">  
+	    <zip destfile="${ant.project.name}.zip" basedir="."
+	         includes="**/*.xml, ${src.dir}/**, ${test.dir}/**, ${data.dir}/**"
+	    />
+    </target>
+    
+    
+</project>

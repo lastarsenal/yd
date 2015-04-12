@@ -1,4 +1,4 @@
-package com.edong.entity;
+package com.edong.parser;
 
 import java.io.File;
 import java.text.ParseException;
@@ -12,12 +12,15 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import com.edong.entity.Location;
+import com.edong.entity.Track;
+
 public class GPXParser {
 
 	private static SimpleDateFormat timeFormatter =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'"); 
 
 	@SuppressWarnings("unchecked")	
-	public Track parse(String gpxFile) throws DocumentException, ParseException {
+	public final static Track parse(String gpxFile) throws DocumentException, ParseException {
 		Track track = new Track();
 		SAXReader reader = new SAXReader();
 	    Document document = reader.read(new File(gpxFile));		
@@ -51,8 +54,7 @@ public class GPXParser {
 
 	public static void main(String[] args) throws DocumentException, ParseException {
 		String gpxFile = "/Users/ekixun/Work/test/yd/data/1235m.gpx";
-		GPXParser gpxParser = new GPXParser();
-		Track track = gpxParser.parse(gpxFile);
+		Track track = GPXParser.parse(gpxFile);
 		System.out.println("point size=" + track.getLocations().size());
 		//System.out.println(track);
 	}

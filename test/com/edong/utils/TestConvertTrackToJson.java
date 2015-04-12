@@ -12,8 +12,8 @@ import net.sf.json.JSONObject;
 import org.dom4j.DocumentException;
 import org.junit.Test;
 
-import com.edong.entity.GPXParser;
 import com.edong.entity.Track;
+import com.edong.parser.GPXParser;
 
 public class TestConvertTrackToJson {
 	
@@ -30,8 +30,7 @@ public class TestConvertTrackToJson {
 	public void testConvertTrackToJson() throws DocumentException, ParseException, FileNotFoundException {
 		for (int i = 0; i < TestGpxFiles.length; i++) {
 			System.out.println("Load track form gpx file: " + new File(TestGpxFiles[i]).getAbsolutePath());
-			GPXParser gpxParser = new GPXParser();
-			Track track = gpxParser.parse(TestGpxFiles[i]);
+			Track track = GPXParser.parse(TestGpxFiles[i]);
 			JSONObject jsonObj = JsonFormatConverter.convertTrackToJson(track);
 			PrintWriter pw = null;
 			try {

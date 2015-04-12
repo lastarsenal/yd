@@ -10,6 +10,7 @@ import org.junit.Test;
 import com.edong.entity.Track;
 import com.edong.entity.TrackHelper;
 import com.edong.entity.TrackSummary;
+import com.edong.parser.JSONParser;
 
 public class TestConvertJsonToTrack {
 
@@ -17,7 +18,7 @@ public class TestConvertJsonToTrack {
 	public void testConvertJsonToTrack() throws IOException {
 		System.out.println("Load track from json file: " 
 	       + new File(TestConvertTrackToJson.TestJSONFiles[0]).getAbsolutePath());
-		Track track = JsonFormatConverter.convertJsonToTrack(TestConvertTrackToJson.TestJSONFiles[0]);
+		Track track = JSONParser.parse(TestConvertTrackToJson.TestJSONFiles[0]);
 		System.out.println("point size=" + track.getLocations().size());
 		TrackSummary trackSummary = TrackHelper.sumTrack(track);
 		double expectedSumUp = 1287.3970000000002;
@@ -36,7 +37,7 @@ public class TestConvertJsonToTrack {
 		for (int i = 0; i < TestConvertTrackToJson.TestJSONFiles.length; i++) {
 			System.out.println("Load track from json file: " 
 				       + new File(TestConvertTrackToJson.TestJSONFiles[i]).getAbsolutePath());
-			Track track = JsonFormatConverter.convertJsonToTrack(TestConvertTrackToJson.TestJSONFiles[i]);
+			Track track = JSONParser.parse(TestConvertTrackToJson.TestJSONFiles[i]);
 			System.out.println("point size=" + track.getLocations().size());
 			TrackSummary trackSummary = TrackHelper.sumTrack(track);	
 			System.out.println(trackSummary);
