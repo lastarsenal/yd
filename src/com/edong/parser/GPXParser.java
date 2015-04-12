@@ -15,6 +15,11 @@ import org.dom4j.io.SAXReader;
 import com.edong.entity.Location;
 import com.edong.entity.Track;
 
+/**
+ * 把gpx文件parse成运动轨迹类Track 
+ * @author yixun
+ *
+ */
 public class GPXParser {
 
 	private static SimpleDateFormat timeFormatter =new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'"); 

@@ -12,6 +12,11 @@ import com.edong.entity.TrackHelper;
 import com.edong.entity.TrackSummary;
 import com.edong.parser.JSONParser;
 
+/**
+ * 测试由json读入成{@code Track}类，然后进行统计计算成{@code TrackSummary}
+ * @author yixun
+ *
+ */
 public class TestConvertJsonToTrack {
 
 	@Test

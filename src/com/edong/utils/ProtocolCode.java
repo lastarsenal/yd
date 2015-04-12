@@ -1,5 +1,10 @@
 package com.edong.utils;
 
+/**
+ * 常量定义
+ * @author yixun
+ *
+ */
 public class ProtocolCode {
 
 	public static final String NAME_STARTTIME = "startTime";

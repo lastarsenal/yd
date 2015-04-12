@@ -1,6 +1,10 @@
 package com.edong.entity;
 
-
+/**
+ * 对运动轨迹的计算类
+ * @author yixun
+ *
+ */
 public class TrackHelper {
 	
 	private final static double EARTH_RADIUS = 6371004; //地球半径
@@ -92,6 +96,11 @@ public class TrackHelper {
 		}
 	}
 	
+	/**
+	 * 把打点数据转换成String
+	 * @param loc
+	 * @return
+	 */
 	public static String locationToStr(Location loc) {
 		StringBuffer buf = new StringBuffer();
 		buf.append(String.valueOf(loc.getLatitude())).append(",").append(String.valueOf(loc.getLongitude())).append(",")
@@ -100,6 +109,11 @@ public class TrackHelper {
 		return buf.toString();
 	}
 	
+	/**
+	 * 由String类转换成打点类
+	 * @param str
+	 * @return
+	 */
 	public static Location strToLocation(String str) {
 		String[] strs = str.split(",");
 		if (strs.length != LOC_ELEM_NUM) {

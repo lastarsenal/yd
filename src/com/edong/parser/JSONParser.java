@@ -15,6 +15,11 @@ import com.edong.entity.Track;
 import com.edong.entity.TrackHelper;
 import com.edong.utils.ProtocolCode;
 
+/**
+ * 把json数据parse成运动轨迹Track类
+ * @author yixun
+ *
+ */
 public class JSONParser {
 
 	public final static Track parse(String jsonFile) throws IOException {

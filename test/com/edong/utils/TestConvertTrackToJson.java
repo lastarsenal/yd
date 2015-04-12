@@ -15,6 +15,11 @@ import org.junit.Test;
 import com.edong.entity.Track;
 import com.edong.parser.GPXParser;
 
+/**
+ * 测试将gpx文件写成json格式的文件
+ * @author yixun
+ *
+ */
 public class TestConvertTrackToJson {
 	
 	public static final String TestGpxFiles[] = {

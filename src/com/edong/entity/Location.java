@@ -1,7 +1,10 @@
 package com.edong.entity;
 
-
-
+/**
+ * GPS的一个打点信息类
+ * @author yixun
+ *
+ */
 public class Location {
 	private double latitude; //纬度
 	private double longitude; //经度

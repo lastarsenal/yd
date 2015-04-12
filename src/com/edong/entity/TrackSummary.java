@@ -1,14 +1,19 @@
 package com.edong.entity;
 
+/**
+ * 运动轨迹的统计计算结果
+ * @author yixun
+ *
+ */
 public class TrackSummary {
 	
-	private double sumUp;
-	private double sumDown;
-	private double sumUpDistance;
-	private double sumDownDistance;
-	private double sumHorizonDistance;
-	private long startTime; //in milliseconds;
-	private long endTime; //in milliseconds;
+	private double sumUp; //累计上升，米
+	private double sumDown; //累计下降，米
+	private double sumUpDistance; //累计上升的运动距离，米
+	private double sumDownDistance; //累计下降的运动距离，米
+	private double sumHorizonDistance; //累计平地上的运动距离，米
+	private long startTime; //开始时间，in milliseconds;
+	private long endTime; //结束时间，in milliseconds;
 	
 	public TrackSummary() {
 		this.sumUp = 0;

@@ -9,6 +9,11 @@ import org.junit.Test;
 
 import com.edong.parser.GPXParser;
 
+/**
+ * TrackHelper测试类
+ * @author yixun
+ *
+ */
 public class TestTrackHelper {
 	
 	/**

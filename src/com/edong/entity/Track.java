@@ -3,6 +3,11 @@ package com.edong.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 一次运动轨迹，包括一组打点数据
+ * @author yixun
+ *
+ */
 public class Track {
 	private String name;
 	private List<Location> locations;
